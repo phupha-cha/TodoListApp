@@ -1,26 +1,100 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-primary-50: var(--primary-50);
+  --color-primary-100: var(--primary-100);
+  --color-primary-200: var(--primary-200);
+  --color-primary-300: var(--primary-300);
+  --color-primary-400: var(--primary-400);
+  --color-primary-500: var(--primary-500);
+  --color-primary-600: var(--primary-600);
+  --color-primary-700: var(--primary-700);
+
+  --color-secondary-50: var(--secondary-50);
+  --color-secondary-100: var(--secondary-100);
+  --color-secondary-200: var(--secondary-200);
+
+  --color-status-not-started: var(--status-not-started);
+  --color-status-in-progress: var(--status-in-progress);
+  --color-status-done: var(--status-done);
+
+  --color-bg-main: var(--bg-main);
+  --color-bg-panel: var(--bg-panel);
+  --color-bg-card: var(--bg-card);
+  
+  --color-text-main: var(--text-main);
+  --color-text-muted: var(--text-muted);
+  --color-border-main: var(--border-main);
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Primary Pastel Green */
+  --primary-50: #f2fbf7;
+  --primary-100: #d9f5e8;
+  --primary-200: #b8ead5;
+  --primary-300: #8edcbc;
+  --primary-400: #5fcc9f;
+  --primary-500: #34b37f;
+  --primary-600: #28966a;
+  --primary-700: #1f7554;
+
+  /* Secondary Neutral */
+  --secondary-50: #f7faf9;
+  --secondary-100: #eef5f2;
+  --secondary-200: #ddebe5;
+
+  /* Status */
+  --status-not-started: #94a3b8;
+  --status-in-progress: #3b82f6;
+  --status-done: #22c55e;
+
+  /* Theme mappings (Light) */
+  --bg-main: var(--secondary-100);
+  --bg-panel: var(--secondary-50);
+  --bg-card: #ffffff;
+  
+  --text-main: #111827;
+  --text-muted: #6b7280;
+  --border-main: #e5e7eb;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+.dark {
+  /* Adjusted Primary for Dark Mode */
+  --primary-400: #4ade80;
+  --primary-500: #22c55e;
+  --primary-600: #16a34a;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Status Dark Mode */
+  --status-not-started: #64748b;
+  --status-in-progress: #60a5fa;
+  --status-done: #4ade80;
+
+  /* Theme mappings (Dark) */
+  --bg-main: #0f172a;
+  --bg-panel: #111827;
+  --bg-card: #1f2937;
+  
+  --text-main: #f9fafb;
+  --text-muted: #9ca3af;
+  --border-main: #374151;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-bg-main);
+  color: var(--color-text-main);
+}
+
+.shadow-premium {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.btn-premium {
+  background: linear-gradient(135deg, var(--primary-500), var(--primary-400));
+  color: white;
+  transition: opacity 0.2s;
+}
+.btn-premium:hover {
+  opacity: 0.9;
 }
