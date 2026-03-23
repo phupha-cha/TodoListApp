@@ -24,7 +24,7 @@ function MonthlyDraggableTask({ task }: { task: AppTask }) {
        style={chipStyle}
        title={task.taskName}
     >
-      {task.time ? <span className="opacity-70 mr-1">{task.time}</span> : ''}
+      {task.time ? <span className="hidden md:inline opacity-70 mr-1">{task.time}</span> : ''}
       {task.taskName}
     </div>
   );
@@ -35,18 +35,21 @@ function MonthlyDayBox({ day, isCurrentMonth, isToday, dayTasks }: any) {
   const { setNodeRef, isOver } = useDroppable({ id: dateStr, data: { type: 'MonthlyDay' } });
   
   return (
-    <div ref={setNodeRef} className={`border-r border-b border-border-main p-1.5 flex flex-col gap-1 overflow-hidden transition ${isOver ? 'bg-primary-50 dark:bg-primary-900/30 border-primary-300 inset-shadow-sm' : (!isCurrentMonth ? 'bg-secondary-50/50 dark:bg-bg-panel/50 opacity-50' : 'bg-bg-card hover:bg-secondary-50 dark:hover:bg-primary-900/10')}`}>
-      <div className="flex justify-between items-center px-1 mb-1">
-        <span className={`text-[10px] font-bold ${isToday ? 'bg-primary-500 text-white w-5 h-5 flex items-center justify-center rounded-full' : 'text-text-muted mt-0.5'}`}>
+    <div ref={setNodeRef} className={`border-r border-b border-border-main p-1 md:p-1.5 flex flex-col gap-0.5 md:gap-1 overflow-hidden transition min-h-0 ${isOver ? 'bg-primary-50 dark:bg-primary-900/30 border-primary-300 inset-shadow-sm' : (!isCurrentMonth ? 'bg-secondary-50/50 dark:bg-bg-panel/50 opacity-50' : 'bg-bg-card hover:bg-secondary-50 dark:hover:bg-primary-900/10')}`}>
+      <div className="flex items-center gap-1 px-0.5 mb-0.5">
+        <span className={`text-[10px] font-bold leading-none ${isToday ? 'bg-primary-500 text-white w-4 h-4 md:w-5 md:h-5 flex items-center justify-center rounded-full' : 'text-text-muted'}`}>
           {format(day, 'd')}
         </span>
-        {dayTasks.length > 0 && <span className="text-[9px] font-medium text-primary-500">{dayTasks.length} tasks</span>}
+        {dayTasks.length > 0 && <span className="text-[8px] font-medium text-primary-500 leading-none">{dayTasks.length}</span>}
       </div>
       
-      <div className="flex-1 overflow-y-auto custom-scrollbar flex flex-col gap-1 pr-1">
-        {dayTasks.map((task: AppTask) => (
+      <div className="flex-1 overflow-hidden flex flex-col gap-0.5">
+        {dayTasks.slice(0, 3).map((task: AppTask) => (
           <MonthlyDraggableTask key={task._id} task={task} />
         ))}
+        {dayTasks.length > 3 && (
+          <span className="text-[8px] text-text-muted font-medium px-1">+{dayTasks.length - 3} more</span>
+        )}
       </div>
     </div>
   );

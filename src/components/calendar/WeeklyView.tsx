@@ -131,14 +131,14 @@ export default function WeeklyView() {
       <div className="flex flex-col h-full bg-bg-card rounded-2xl border border-border-main overflow-hidden shadow-premium animate-in fade-in duration-300">
         
         {/* Header */}
-        <div className="grid grid-cols-8 border-b border-border-main bg-secondary-50 dark:bg-bg-panel shrink-0">
-          <div className="p-3 border-r border-border-main flex items-center justify-center text-xs font-bold text-text-muted uppercase">Time</div>
+        <div className="grid border-b border-border-main bg-secondary-50 dark:bg-bg-panel shrink-0" style={{ gridTemplateColumns: 'var(--time-col, 40px) repeat(7, 1fr)' }}>
+          <div className="p-1.5 md:p-3 border-r border-border-main flex items-center justify-center text-[10px] font-bold text-text-muted uppercase">T</div>
           {days.map(day => {
             const isToday = isSameDay(day, new Date());
             return (
-              <div key={day.toISOString()} className={`p-3 border-r border-border-main flex flex-col items-center justify-center ${isToday ? 'bg-primary-50 dark:bg-primary-900/20' : ''}`}>
-                <span className="text-xs font-bold text-text-muted uppercase">{format(day, 'EEE')}</span>
-                <span className={`text-lg font-extrabold ${isToday ? 'text-primary-600 dark:text-primary-400 bg-primary-100 dark:bg-primary-900/50 w-8 h-8 flex items-center justify-center rounded-full mt-1' : 'text-text-main mt-1'}`}>
+              <div key={day.toISOString()} className={`p-1 md:p-3 border-r border-border-main flex flex-col items-center justify-center ${isToday ? 'bg-primary-50 dark:bg-primary-900/20' : ''}`}>
+                <span className="text-[9px] md:text-xs font-bold text-text-muted uppercase">{format(day, 'EEE')}</span>
+                <span className={`text-sm md:text-lg font-extrabold ${isToday ? 'text-primary-600 dark:text-primary-400 bg-primary-100 dark:bg-primary-900/50 w-6 h-6 md:w-8 md:h-8 flex items-center justify-center rounded-full mt-0.5' : 'text-text-main mt-0.5'}`}>
                   {format(day, 'd')}
                 </span>
               </div>
@@ -148,13 +148,12 @@ export default function WeeklyView() {
         
         {/* Grid */}
         <div className="flex-1 overflow-y-auto custom-scrollbar relative">
-          <div className="grid grid-cols-8 relative" style={{ height: '960px' }}> {/* 40px per hour */}
-            
+          <div className="relative" style={{ display: 'grid', gridTemplateColumns: 'var(--time-col, 40px) repeat(7, 1fr)', height: '960px' }}>
             {/* Time Column */}
-            <div className="col-span-1 border-r border-border-main flex flex-col">
+            <div className="border-r border-border-main flex flex-col">
               {hours.map(hour => (
                 <div key={hour} className="h-[40px] border-b border-border-main flex items-center justify-center relative bg-bg-panel/10">
-                  <span className="text-[10px] text-text-muted font-medium absolute -top-2.5 bg-bg-card px-1">{hour}:00</span>
+                  <span className="text-[9px] md:text-[10px] text-text-muted font-medium absolute -top-2.5 bg-bg-card px-0.5">{hour}:00</span>
                 </div>
               ))}
             </div>

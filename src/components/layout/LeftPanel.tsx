@@ -1,8 +1,8 @@
 'use client';
-import { useState } from 'react';
 import { useTaskStore } from '@/store/useTaskStore';
 import { addDays, format } from 'date-fns';
 import { Calendar as CalendarIcon, Clock, Download, RepeatIcon } from 'lucide-react';
+import { useState } from 'react';
 
 export default function LeftPanel() {
   const { tasks, tasksLoading, selectedDate, setSelectedDate, viewMode, setViewMode } = useTaskStore();
@@ -20,7 +20,7 @@ export default function LeftPanel() {
   };
 
   return (
-    <div className="flex flex-col h-full bg-bg-panel border-r border-border-main p-6 overflow-hidden">
+    <div className="flex flex-col w-full h-full bg-bg-panel border-r border-border-main p-6 overflow-hidden">
       <div className="flex flex-col mb-6 gap-4">
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-2">

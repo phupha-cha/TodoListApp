@@ -1,16 +1,16 @@
 'use client';
-import { useEffect, useState, useRef } from 'react';
-import { format } from 'date-fns';
-import LeftPanel from '@/components/layout/LeftPanel';
 import KanbanBoard from '@/components/board/KanbanBoard';
+import MonthlyView from '@/components/calendar/MonthlyView';
+import WeeklyView from '@/components/calendar/WeeklyView';
+import LeftPanel from '@/components/layout/LeftPanel';
 import ThemeToggle from '@/components/layout/ThemeToggle';
-import { useTaskStore } from '@/store/useTaskStore';
-import { Plus, BarChart2 } from 'lucide-react';
-import TaskModal from '@/components/modals/TaskModal';
 import EditTaskModal from '@/components/modals/EditTaskModal';
 import ReportModal from '@/components/modals/ReportModal';
-import WeeklyView from '@/components/calendar/WeeklyView';
-import MonthlyView from '@/components/calendar/MonthlyView';
+import TaskModal from '@/components/modals/TaskModal';
+import { useTaskStore } from '@/store/useTaskStore';
+import { format } from 'date-fns';
+import { BarChart2, Plus } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
 
 export default function Home() {
   const { selectedDate, tasks, setTasks, setTasksLoading, viewMode, editingTask, setEditingTask, refreshCounter, updateTaskStatus, setViewMode } = useTaskStore();
@@ -83,7 +83,7 @@ export default function Home() {
             <span className="text-[10px] text-text-muted font-medium leading-none">{format(new Date(selectedDate), 'EEEE')}</span>
             <span className="text-sm font-bold text-primary-500 leading-tight">{format(new Date(selectedDate), 'MMM d, yyyy')}</span>
           </button>
-          <h1 className="hidden md:block text-2xl font-bold text-text-main tracking-tight">Board</h1>
+          <h1 className="hidden md:block text-2xl font-bold text-text-main tracking-tight">Task Lists</h1>
 
           <div className="flex items-center gap-2 md:gap-4 ml-auto">
             <button onClick={() => setReportModalOpen(true)} className="p-2 text-text-muted hover:text-primary-500 hover:bg-secondary-100 dark:hover:bg-bg-card rounded-xl transition" title="Report">
